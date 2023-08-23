@@ -35,7 +35,14 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-
+    // CREATING OBJECT TO BE RETURNED 
+     var contact = {};
+     // ADDING PROPERTIES TO OBJECT
+      contact["id"] = id;
+      contact["nameFirst"] = nameFirst;
+      contact["nameLast"] = nameLast;
+      // RETURNS A CONTACT OBJECT TO BE ADDED TO THE LIST
+       return contact;
 } 
 
 
@@ -52,7 +59,13 @@ function makeContactList() {
         }, 
         addContact: function(contact){
             contact.push(contacts)
-        }
+        },
+        // 3. TAKES A FULL-NAME STRING AND RETURNS THE CONTACT OBJECT IF FOUND IN THE CONTACT LIST, OR, UNDEFINED IF THE fullName DOES NOT MATCH ANY CONTACTS IN THE LIST
+         findContact(fullName) {
+            // USING FOR LOOP TO ACCESS ARRAY OF OBJECTS
+             for (var i = 0; i <= )
+         }
+         
     }
 }
 

@@ -109,7 +109,10 @@ function createEndsWithFilter(endsWith) {
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
     // RETURN THE ARRAY OF STRINGS MODIFIED
-     
+     // USING FOR LOOP
+      for (var i = 0; i <= strings.length - 1; i++) {
+         // PASS EACH STRING INTO THE MODIFIED
+      }
     
     
     

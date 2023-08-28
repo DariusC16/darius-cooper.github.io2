@@ -58,13 +58,39 @@ function makeContactList() {
             return contacts.length;
         }, 
         addContact: function(contact){
-            contact.push(contacts)
+            contacts.push(contact)
         },
-        // 3. TAKES A FULL-NAME STRING AND RETURNS THE CONTACT OBJECT IF FOUND IN THE CONTACT LIST, OR, UNDEFINED IF THE fullName DOES NOT MATCH ANY CONTACTS IN THE LIST
+        // 3. TAKES A FULL-NAME STRING AND RETURNS THE CONTACT OBJECT IF FOUND IN THE CONTACTS LIST, OR, UNDEFINED IF THE fullName DOES NOT MATCH ANY CONTACTS IN THE LIST
          findContact(fullName) {
             // USING FOR LOOP TO ACCESS ARRAY OF OBJECTS
-             for (var i = 0; i <= )
-         }
+             for (var i = 0; i <= contacts.length - 1; i++) {
+                // IF FULLNAME IS FOUND IN THE CONTACTS LIST
+                 if (contacts[i]["nameFirst"] + ' ' + contacts[i]["nameLast"] === fullName) {
+                    // RETURN THE CONTACT OBJECT
+                     return contacts[i];
+                 } else {
+                    // OR UNDEFINED IF THE FULLNAME DOES NOT MATCH ANY CONTACTS 
+                    return undefined;
+                 }
+             }
+         }, 
+         // 4. TAKES A CONTACT OBJECT TO BE REMOVED FROM THE CONTACTS LIST
+          removeContact(contact) {
+            // USING SPLICE METHOD
+             return contacts.splice(contact, 1);
+          },
+          printAllContactNames() {
+            // SHOULD RETURN A STRING FORMATED WITH ALL THE FULLNAMES OF THEM SEPERATED WITH A LINE BREAK
+            // INITIALIZING VARAIBLE
+             var arrLit = [];
+
+             // USING FOR LOOP
+              for (var i = 0; i <= contacts.length - 1; i++) {
+                arrLit.push(contacts[i]["nameFirst"] + ' ' + contacts[i]["nameLast"])
+              }
+              // RETURN THEM SEPERATED WITH A LINE BREAK
+               return arrLit.join('\n');
+          }
          
     }
 }

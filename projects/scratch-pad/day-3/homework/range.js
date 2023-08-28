@@ -23,9 +23,22 @@
  */
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
-    
-    
-    
+    // INITALIZING VARIABLE
+     var arrLit = [];
+
+     // IF THE FIRST ARGUMENT IS GREATER THAN THE SECOND
+      if (start < end) {
+        // USING FOR LOOP
+         for (var i = start; i <= end; i++) {
+            // RETURN THE RANGE IN REVERSE ORDER
+             arrLit.push(i);
+         }
+    } else {
+            for (var i = start; i >= end; i--) {
+                 arrLit.push(i);
+            }
+         }
+    return arrLit;
     
     // YOUR CODE GOES ABOVE HERE //
 }

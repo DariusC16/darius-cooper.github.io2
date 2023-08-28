@@ -108,13 +108,16 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
+    // INITALIZING VARIABLE
+     var arrLit = [];
     // RETURN THE ARRAY OF STRINGS MODIFIED
      // USING FOR LOOP
       for (var i = 0; i <= strings.length - 1; i++) {
          // PASS EACH STRING INTO THE MODIFIED
+          arrLit.push(modify(strings[i]))
       }
     
-    
+    return arrLit;
     
     // YOUR CODE ABOVE HERE //
 }
@@ -130,7 +133,16 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
+    // USING FOR LOOP
+     for (var i = 0; i <= strings.length - 1; i++) {
+      // IF ALL STRINGS PASS THE TEST
+       if (!test(strings[i])) {
+         // RETURN TRUE
+         // Test says expected true to be false
+          return false;
+       }
+   }
+   return true;
     
     
     

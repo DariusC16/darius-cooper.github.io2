@@ -30,14 +30,16 @@ function keysToString(object) {
 
 function valuesToString(object) {
     // INTIALIZING VARIABLE
-     var result = "";
+     var result = [];
+    // SHOULD TAKE AN OBJECT AND RETURN ALL IT'S STRING VALUES IN A STRING EACH SEPERATED WITH A SPACE
 
-     // SHOULD TAKE AN OBJECT AND RETURN ALL IT'S STRING VALUES IN A STRING EACH SEPERATED WITH A SPACE
-      result = Object.values(object);
-
-      // USING JOIN METHOD TO TRANSFORM ARRAY OF VALUES INTO STRINGS
-       return result.join(" ");
-    
+    // USING FOR IN LOOP
+     for (var key in object) {
+      if (typeof object[key] === 'string') {
+        result.push(object[key]);
+      }
+     }
+    return result.join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -81,20 +83,35 @@ function capitalizeAllWords(string) {
     
     // USING FOR LOOP
      for (var i = 0; i <= string.length - 1; i++) {
-      string[i] = string[i].charAt().toUpperCase() + string[i].slice(1)
-     }
-
-     // RETURNING STRING
-      return string.join(" ");
-}
+      // ASSIGNING THE LOOP ARRAY OF STRINGS TO BE THE SENTENCE PUT TOGETHER
+       string[i] = string[i].charAt().toUpperCase() + string[i].slice(1);
+      }
+      
+      // RETURNING STRING
+       return string.join(" ");
+      }
 
 //////////////////////////////////////////////////////////////////////
 // Function 7 - Welcome Message //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
-  
+  // SHOULD TAKE AN OBJECT WITH A NAME PROPERTY AND RETURN 'Welcome <Name>!' 
+   var result = "";
+   var test = "";
 
+   // USING FOR IN LOOP
+    for (var key in object) {
+      // IF NAME PROPERTY VALUE IS THE SAME AS THE KEY VALUES
+       if (object.name === object[key]) {
+        // TURN FIRST CHARACTER OF A STRING TO UPPERCASE
+         result = object[key].charAt().toUpperCase() + object[key].slice(1)
+        }
+      }
+      
+      test = 'Welcome' + ' ' + result + '!'
+
+   return test;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -102,7 +119,19 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
+  // SHOULD TAKE AN OBJECT WITH A NAME AND SPECIES AND RETURN Name IS A Species
+   // INITALIZNG VARIABLES
+    var result;
+    var key1;
+    var key2;
 
+    key1 = object.name.toUpperCase().charAt() + object.name.slice(1);
+    key2 = object.species.charAt().toUpperCase() + object.species.slice(1);
+
+    result = key1 + ' ' + 'is a' + ' ' + key2;
+
+    return result;
+ 
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -110,6 +139,15 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
+  // SHOULD TAKE AN OBJECT IF THIS OBJECT HAS A NOISES ARRAY RETURN THEM AS A STRING SEPERATED BY A SPACE, IF THERE ARE NO NOISES RETURN THERE ARE NO NOISES
+   // IF THIS OBJECT HAS A NOISES ARRAY
+    if (Array.isArray(object.noises) && object.noises.length > 0) {
+      // RETURN THEM AS A STRING SEPERATED BY A SPACE
+       return object.noises.join(' ');
+    } else {
+      // RETURN THERE ARE NO NOISES 
+       return 'there are no noises';
+    }
 
 }
 
@@ -118,6 +156,15 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
+    // SHOULD TAKE A STRING OF WORDS AND A WORD AND RETURN TRUE IF THE WORD IS IN STRING OF WORDS, OTHERWISE RETURN FALSE
+     // IF WORD IS IN STRING OF WORDS
+      if (string.includes(word)) {
+        // RETURN TRUE
+         return true;
+      } else {
+        // OTHERWISE RETURN FALSE
+         return false;
+      }
 
 }
 
@@ -126,7 +173,10 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
-
+  // SHOULD TAKE A NAME AND AN OBJECT AND ADD THE NAME TO THE OBJECT'S FRIENDS ARRAY THEN RETURN THE OBJECT
+   // BEST ADVICE IS TO TAKE THESE LITERALLY
+    object.friends.push(name)
+     return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -134,7 +184,29 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
+  // SHOULD TAKE A NAME AND AN OBJECT AND RETURN TRUE IF NAME IS A FRIEND OF OBJECT AND FALSE OTHERWISE
+   // UISNG FOR LOOP TO ACCES ARRAY IN OBJECT
+    /* for (var i = 0; i <= object.friends.length; i++) {
+      // IF NAME IS A FRIEND OF OBJECT
+       if (object.friends[i] === name) {
+        // RETURN TRUE
+         return true;
+       }
+    }
 
+    // RETURN FALSE OTHERWISE
+     return false; */
+     
+     // NEW CODE
+      // IF FRIENDS IN OBJECT IS AN ARRAY
+       if (Array.isArray(object.friends)) {
+        // CHECK IF FRIENDS INCLUDES NAME
+         return object.friends.includes(name); // => SHOULD GIVE TRUE
+       } // RETURN FALSE OTHERWSIE
+          else {
+            return false;
+          } 
+          
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -142,7 +214,22 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
-
+  // SHOULD TAKE A NAME AND A LIST OF PEOPLE, AND RETURN A LIST OF ALL THE NAMES THAT NAME IS NOT FRIENDS WITH
+   // INIT VARIABLE 
+    var a = [] ;
+  // USING FOR LOOP 
+    for (var i = 0; i <= array.length - 1; i++) {
+      // INSIDE THE ARRAY
+       // USING IF STATEMENT
+        // IF NAME AND FRIENDS IN OBJECT DOESNT HAVE name
+        if (array[i].name !== name && !array[i].friends.includes(name)) {
+          // PUSH NAME IN OBJECT TO LIST
+           a.push(array[i].name);
+           //console.log(a + 'Hey there')// return a
+        } 
+      } 
+      //console.log(a);
+      return a;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -150,6 +237,24 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) {
+  // SHOULD UPDATE THE PROPERTY KEY ON OBJECT WITH NEW VALUE. IF KEY DOES NOT EXIST ON OBJECT CREATE IT
+   // IF KEY DOES NOT EXIST ON OBJECT 
+     if (!object[key]) {
+      // CREATE IT
+       object[key] = value;
+      } // IF KEY DOES EXIST ON OBJECT 
+         else if (object[key]) {
+          // CHANGE VALUE
+           object[key] = value
+          } else {
+            // NOTHING CHANGES
+             object;
+            }
+     
+    //object[key] = value; => This works too apparently. 
+    
+    // RETURN OBJECT
+     return object;
 
 }
 
@@ -158,6 +263,22 @@ function updateObject(object, key, value) {
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {
+  // SHOULD TAKE AN OBJECT AND AN ARRAY OF STRINGS. SHOULD REMOVE ANY PROPERTIES ON OBJECT THAT ARE LISTED IN ARRAY
+   // USING FOR IN LOOP TO ACCESS KEYS IN OBJECT
+    for (var key in object) {
+      // USING FOR LOOP TO ACCESS STRINGS IN ARRAY
+       for (var i = 0; i <= array.length - 1; i++) {
+        // USING IF STATEMENT
+         // IF KEY IN OBJECT IS LISTED IN THE ARRAY
+          if (key == array[i]) {
+            // REMOVE PROPERTY
+             delete object[key];
+            }
+          }
+        }
+
+        // RETURN OBJECT
+         return object;
 
 }
 
@@ -166,6 +287,23 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
+  // SHOULD TAKE AN ARRAY AND RETURN AN ARRAY WITH ALL THE DUPLICATES REMOVED
+   //INIT VARIABLE
+    var arrLit;
+
+    // USING FOR LOOP
+     /* for (var i = 0; i <= array.length - 1; i++) {
+      // IF ARRAY VALUES REPEAT
+       if (array.includes(array[i]).length > 1) {
+        // RETURN ARRAY
+         return array;
+       } */
+
+       // NEW CODE
+        arrLit = [...new Set(array)];
+
+        // RETURN ARRAY
+        return arrLit;
 
 }
 

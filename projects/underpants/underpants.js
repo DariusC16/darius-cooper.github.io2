@@ -47,7 +47,23 @@ _.identity = function(value) {
 
 _.typeof(value) {
     // RETURN THE TYPE OF VALUE AS A STRING
-     if (typeof value)
+     if (typeof value === 'string') {
+        return 'string'
+     } else if (Array.isArray(value)) {
+        return 'array';
+    } else if (value === null) {
+        return 'null';
+    } else if (typeof value === 'object'){
+        return 'object';
+    } else if (typeof value === 'undefined') {
+        return 'undefined';
+    } else if (typeof value === 'number') {
+        return 'number';
+    } else if (typeof value === 'boolean') {
+        return 'boolean';
+    } else if (typeof value === 'function') {
+        return 'function';
+    }
 
 }
 
@@ -120,7 +136,16 @@ function
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(array, value) {
+    // USING FOR LOOP TO ITERATE THROUGH ARRAY AND USE TERNARY OPERATOR
+    let store = [];
+    for (var i = 0; i < array.length; i++) {
+       if (array[i] === value) {
+        store.push(array[i]);
+       }
+    }
+    return (store[0] === value ? true : false);
+}
 
 /** _.each
 * Arguments:
@@ -195,7 +220,15 @@ _.each = function(collection, func) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(array, func) {
+    var store = []
+     for (var i = 0; i < array.length; i++) {
+         if (!func(array[i], i, array)) {
+             store.push(array[i])
+         } 
+     }
+     return store;
+ }
 
 /** _.partition
 * Arguments:
@@ -233,7 +266,15 @@ _.each = function(collection, func) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 _.map = function(collection, func) {
-    let 
+    // INITALIZING VARAIBLE
+     var output = [];
+     
+     // IF COLLECTION IS AN ARRAY
+      if(Array.isArray(collection)){
+            for (var i = 0; i < collection.length; i++) {
+            output.push(func(collection[i], i, collection));
+        }
+    } // IF COLLECTION IS AN OBJECT?
 }
 
 /** _.pluck

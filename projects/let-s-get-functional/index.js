@@ -42,7 +42,17 @@ var femaleCount = function(array) {
 
 var oldestCustomer;
 
-var youngestCustomer;
+var youngestCustomer = function(array) {
+var youngest = _.reduce(array, function(accumulator,current){
+    //similar to oldest
+    if(current.age < accumulator.age) {
+        accumulator = current;
+    }
+    return accumulator;
+})
+//return string
+return youngest.name;
+}
 
 var averageBalance;
 
